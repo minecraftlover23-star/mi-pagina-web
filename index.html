@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimentador Automático</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            height: 80px;
+            width: auto;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #0056b3;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .menu button {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: transform 0.2s, background 0.3s;
+        }
+        .menu button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d82);
+            transform: scale(1.05);
+        }
+        .content {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        img {
+            width: 200px;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .large-img {
+            width: 100%;
+            max-width: 600px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.content').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <img src="imagenes/universidad_logo.jpg" alt="Logo Universidad">
+        <img src="imagenes/alimentador_logo.png" alt="Logo Alimentador">
+    </div>
+    
+    <div class="container">
+        <h1>Alimentador Automático para Mascotas</h1>
+        
+        <div class="menu">
+            <button onclick="showSection('descripcion')">Descripción</button>
+            <button onclick="showSection('componentes')">Componentes</button>
+            <button onclick="showSection('esquema')">Esquema de Conexión</button>
+            <button onclick="showSection('funcionamiento')">Funcionamiento</button>
+            <button onclick="showSection('codigo')">Código</button>
+        </div>
+        
+        <div class="content" id="descripcion">
+            <h2>Descripción</h2>
+            <p>Este proyecto consiste en un alimentador automático de mascotas controlado mediante un bot de Telegram, permitiendo la administración remota de comida y agua de manera eficiente. El sistema está diseñado para dosificar alimento y agua según el tamaño y las necesidades específicas de la mascota, garantizando una alimentación controlada y programada.</p>
+            <p>El alimentador utiliza un ESP32 como microcontrolador principal, el cual se encarga de gestionar los sensores y actuadores. Los sensores ultrasónicos detectan el nivel de alimento y agua, asegurando que el suministro sea constante y evitando el desperdicio. El sistema de dosificación está compuesto por un pistón y una electroválvula, que permiten liberar porciones precisas según lo configurado por el usuario a través de la aplicación de Telegram.</p>
+            <p>A través del bot de Telegram, el dueño de la mascota puede:</p>
+            <ul>
+                <li>✅ Dosificar manualmente desde cualquier lugar.</li>
+                <li>✅ Recibir notificaciones sobre los niveles de comida y agua.</li>
+                <li>✅ Monitorear el estado del alimentador en tiempo real.</li>
+            </ul>
+            <p>El diseño del alimentador está construido con madera y cartón, y tiene dimensiones de 42 cm de largo, 30 cm de alto y 35 cm de ancho. Su estructura está dividida en dos compartimentos: uno para el almacenamiento de agua y otro para el alimento seco.</p>
+            <p>Este proyecto busca ofrecer una solución económica, accesible y eficiente para el cuidado de mascotas, facilitando la vida de los dueños y asegurando una nutrición adecuada para los animales.</p>
+        </div>
+        
+        <div class="content" id="componentes">
+            <h2>Componentes</h2>
+            <ul>
+                <li>ESP32-CAM <img src="imagenes/esp32.jpg" alt="ESP32-CAM"></li>
+                <li>2 sensores ultrasónicos <img src="imagenes/ultra.jpg" alt="Sensor ultrasónico"></li>
+                <li>Electroválvula <img src="imagenes/electro.jpg" alt="Electroválvula"></li>
+                <li>2 módulos relay <img src="imagenes/relay.jpg" alt="Módulo relay"></li>
+                <li>Bomba de agua <img src="imagenes/bomba.jpg" alt="Bomba de Agua"></li>
+                <li>Pistón <img src="imagenes/piston.jpg" alt="Pistón"></li>
+                <li>Bot de Telegram <img src="imagenes/logo.png" alt="Telegram"></li>
+            </ul>
+        </div>
+        
+        <div class="content" id="esquema">
+            <h2>Esquema de Conexión</h2>
+            <img src="imagenes/esquema.jpg" alt="Esquema de conexión" class="large-img">
+        </div>
+        
+        <div class="content" id="funcionamiento">
+            <h2>Funcionamiento</h2>
+            <p>El usuario envía comandos al bot de Telegram para dispensar alimento y agua. La ESP32-CAM permite monitorear en tiempo real.</p>
+        </div>
+        
+        <div class="content" id="codigo">
+            <h2>Código</h2>
+            <img src="imagenes/codigo1.png" alt="Esquema de conexión" class="large-img">
+            <img src="imagenes/codigo2.png" alt="Esquema de conexión" class="large-img">
+            <img src="imagenes/codigo3.png" alt="Esquema de conexión" class="large-img">
+            <img src="imagenes/codigo4.png" alt="Esquema de conexión" class="large-img">
+
+        </div>
+    </div>
+</body>
+</html>
